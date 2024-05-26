@@ -41,5 +41,5 @@ export class User extends Model<User> {
 
 }
 
-export const UserAttributes = ['id', 'username', 'password', 'status', 'updatedBy', 'updatedAt', 'createdBy', 'createdAt'];
-export const FilterUserAttributes = ['id', 'username', 'password'];
+export const UserAttributes = ['userId', 'username', 'password', 'status', 'updatedBy', 'updatedAt', 'createdBy', 'createdAt'];
+export const FilterUserAttributes = ['userId', 'username', 'password'];

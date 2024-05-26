@@ -1,4 +1,5 @@
-import { Table, Column, Model, PrimaryKey, DataType, Default, UpdatedAt, CreatedAt, AutoIncrement } from 'sequelize-typescript';
+import { Table, Column, Model, PrimaryKey, DataType, Default, UpdatedAt, CreatedAt, AutoIncrement, ForeignKey } from 'sequelize-typescript';
+import { User } from './user.model';
 
 @Table({
     modelName: 'ms_cms_wallet',
@@ -12,13 +13,15 @@ export class Wallet extends Model<Wallet> {
     @Column({ type: DataType.INTEGER, allowNull: false })
     walletId: number;
 
-    @Column({ type: DataType.STRING(200), allowNull: false })
-    username: string;
-
-    @Column({ type: DataType.STRING(200), allowNull: false })
-    password: string;
-
+    @ForeignKey(() => User)
     @Column({ type: DataType.INTEGER, allowNull: false })
+    userId: number;
+
+    @Column({ type: DataType.STRING(200), allowNull: false })
+    walletPass: string;
+
+    @Default(0)
+    @Column({ type: DataType.DECIMAL(10, 2), allowNull: false })
     amount: number;
 
     @Default(null)
@@ -39,5 +42,5 @@ export class Wallet extends Model<Wallet> {
 
 }
 
-export const UserAttributes = ['id', 'username', 'password', 'status', 'updatedBy', 'updatedAt', 'createdBy', 'createdAt'];
-export const FilterUserAttributes = ['id', 'username', 'password'];
+export const WalletAttributes = ['walletId', 'userId', 'walletPass', 'amount', 'status', 'updatedBy', 'updatedAt', 'createdBy', 'createdAt'];
+export const FilterWalletAttributes = ['walletId', 'userId', 'walletPass'];
